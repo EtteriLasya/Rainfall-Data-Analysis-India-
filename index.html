@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rainfall prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .login { margin-top: 50px; }
+        input, select { margin: 5px; padding: 10px; width: 200px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body background="https://wallpaperaccess.com/full/701614.jpg" text="black">
+    <div class="login">
+        <h1>Rainfall Prediction</h1>
+        
+        <form action="{{ url_for('predict') }}" method="post">
+            <label>Location:</label><br>
+            <select id="Location" name="Location">
+                <option value="2">Albury</option>
+                <option value="4">BadgerysCreek</option>
+                <option value="10">Cobar</option>
+                <option value="11">CoffsHarbour</option>
+                <option value="37">Sydney</option>
+                <option value="18">Melbourne</option>
+            </select><br>
+
+            <input type="number" step="any" name="MinTemp" placeholder="Min Temp" required>
+            <input type="number" step="any" name="MaxTemp" placeholder="Max Temp" required>
+            <input type="number" step="any" name="Rainfall" placeholder="Rainfall" required>
+            <input type="number" step="any" name="WindGustSpeed" placeholder="Wind Gust Speed" required>
+            <input type="number" step="any" name="WindSpeed9am" placeholder="Wind Speed 9am" required>
+            <input type="number" step="any" name="WindSpeed3pm" placeholder="Wind Speed 3pm" required><br>
+            <input type="number" step="any" name="Humidity9am" placeholder="Humidity 9am" required>
+            <input type="number" step="any" name="Humidity3pm" placeholder="Humidity 3pm" required>
+            <input type="number" step="any" name="Pressure9am" placeholder="Pressure 9am" required>
+            <input type="number" step="any" name="Pressure3pm" placeholder="Pressure 3pm" required><br>
+            <input type="number" step="any" name="Temp9am" placeholder="Temp 9am" required>
+            <input type="number" step="any" name="Temp3pm" placeholder="Temp 3pm" required>
+            
+            <br><label>Rain Today (0=No, 1=Yes):</label><br>
+            <input type="number" name="RainToday" placeholder="Rain Today" required><br>
+            
+            <label>Wind Direction 3pm:</label><br>
+            <select name="WindDir3pm">
+                <option value="14">W</option><option value="10">N</option><option value="12">S</option><option value="5">E</option>
+            </select><br>
+
+            <input type="number" name="year" placeholder="Year" required>
+            <input type="number" name="month" placeholder="Month" required>
+            <input type="number" name="day" placeholder="Day" required><br><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div style="margin-top: 20px;">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
